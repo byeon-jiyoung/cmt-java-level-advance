@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<product xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<productInfo>
+		<productId>1</productId>
+		<productName>노트북</productName>
+	</productInfo>
+	<productInfo>
+		<productId>2</productId>
+		<productName>휴대폰</productName>
+	</productInfo>
+	<productInfo>
+		<productId>3</productId>
+		<productName>TV</productName>
+	</productInfo>
+</product>

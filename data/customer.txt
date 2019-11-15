@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<customer>
+<customerInfo>
+  <customerId></customerId>
+  <customerName></customerName>
+</customerInfo>
+<customerInfo>
+  <customerId></customerId>
+  <customerName></customerName>
+</customerInfo>
+<customerInfo>
+  <customerId></customerId>
+  <customerName></customerName>
+</customerInfo>
+</customer>
