@@ -25,4 +25,9 @@
 		<customerId>2</customerId>
 		<productId>2</productId>
 	</orderInfo>
+	<orderInfo>
+		<orderId>6</orderId>
+		<customerId>3</customerId>
+		<productId>4</productId>
+	</orderInfo>
 </order>

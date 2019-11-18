@@ -27,7 +27,7 @@ public class XmlFileRead {
                 Document doc = dBuilder.parse(new File(csvFileList.get(i))); // 3.생성된 빌더를 통해서 xml문서를 Document객체로 파싱해서 가져온다
                 doc.getDocumentElement().normalize();// 문서 구조 안정화
                 Element root = doc.getDocumentElement();
-
+                
                 if(root.getNodeName().equals("customer")) {
                     NodeList nodeList = root.getElementsByTagName("customerInfo");
                     

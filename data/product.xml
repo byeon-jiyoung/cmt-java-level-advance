@@ -12,4 +12,8 @@
 		<productId>3</productId>
 		<productName>TV</productName>
 	</productInfo>
+	<productInfo>
+		<productId>4</productId>
+		<productName>텀블러</productName>
+	</productInfo>
 </product>
