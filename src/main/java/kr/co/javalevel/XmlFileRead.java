@@ -15,8 +15,7 @@ import org.w3c.dom.NodeList;
 public class XmlFileRead {
     public static Map<Object, Object> getXmlData(List<String> csvFileList) {
         Map<Object, Object> map = new HashMap<Object, Object>();
-        List<Customer> customerList = new 
-                ArrayList<Customer>();
+        List<Customer> customerList = new ArrayList<Customer>();
         List<Product> productList = new ArrayList<Product>();
         List<Order> orderList = new ArrayList<Order>();
         
@@ -27,17 +26,17 @@ public class XmlFileRead {
                 Document doc = dBuilder.parse(new File(csvFileList.get(i))); // 3.생성된 빌더를 통해서 xml문서를 Document객체로 파싱해서 가져온다
                 doc.getDocumentElement().normalize();// 문서 구조 안정화
                 Element root = doc.getDocumentElement();
-                
+
                 if(root.getNodeName().equals("customer")) {
                     NodeList nodeList = root.getElementsByTagName("customerInfo");
                     
                     for (int j = 0; j < nodeList.getLength(); j++) {
-                        Node nNode = nodeList.item(j);
+                        Node node = nodeList.item(j);
                         Customer customer = new Customer();
-                        if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                            Element eElement = (Element) nNode;
-                            customer.setCustomerNumber(Integer.parseInt(getTagValue("customerId", eElement)));
-                            customer.setCustomerName(getTagValue("customerName", eElement));
+                        if (node.getNodeType() == Node.ELEMENT_NODE) {
+                            Element element = (Element) node;
+                            customer.setCustomerNumber(Integer.parseInt(getTagValue("customerId", element)));
+                            customer.setCustomerName(getTagValue("customerName", element));
                             customerList.add(customer);
                         }
                     }
@@ -45,12 +44,12 @@ public class XmlFileRead {
                     NodeList nodeList = root.getElementsByTagName("productInfo");
                     
                     for (int j = 0; j < nodeList.getLength(); j++) {
-                        Node nNode = nodeList.item(j);
+                        Node node = nodeList.item(j);
                         Product product = new Product();
-                        if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                            Element eElement = (Element) nNode;
-                            product.setProductNumber(Integer.parseInt(getTagValue("productId", eElement)));
-                            product.setProductName(getTagValue("productName", eElement));
+                        if (node.getNodeType() == Node.ELEMENT_NODE) {
+                            Element element = (Element) node;
+                            product.setProductNumber(Integer.parseInt(getTagValue("productId", element)));
+                            product.setProductName(getTagValue("productName", element));
                             productList.add(product);
                         }
                     }
@@ -58,18 +57,18 @@ public class XmlFileRead {
                     NodeList nodeList = root.getElementsByTagName("orderInfo");
                     
                     for (int j = 0; j < nodeList.getLength(); j++) {
-                        Node nNode = nodeList.item(j);
+                        Node node = nodeList.item(j);
                         Order order = new Order();
-                        if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                            Element eElement = (Element) nNode;
-                            order.setOrderNumber(Integer.parseInt(getTagValue("orderId", eElement)));
+                        if (node.getNodeType() == Node.ELEMENT_NODE) {
+                            Element element = (Element) node;
+                            order.setOrderNumber(Integer.parseInt(getTagValue("orderId", element)));
                             for (Customer customer : customerList) {
-                                if (customer.getCustomerNumber() == Integer.parseInt(getTagValue("customerId", eElement))) {
+                                if (customer.getCustomerNumber() == Integer.parseInt(getTagValue("customerId", element))) {
                                     order.setCustomerNumber(customer);
                                 }
                             }
                             for (Product product : productList) {
-                                if (product.getProductNumber() == Integer.parseInt(getTagValue("productId", eElement))) {
+                                if (product.getProductNumber() == Integer.parseInt(getTagValue("productId", element))) {
                                     order.setProductNumber(product);
                                 }
                             }
@@ -90,9 +89,10 @@ public class XmlFileRead {
         return map;
     }
 
-    private static String getTagValue(String sTag, Element eElement) {
-        NodeList subNodeList = eElement.getElementsByTagName(sTag).item(0).getChildNodes();
+    private static String getTagValue(String sTag, Element element) {
+        NodeList subNodeList = element.getElementsByTagName(sTag).item(0).getChildNodes();
         Node nodeValue = (Node) subNodeList.item(0);
+        
         return nodeValue.getNodeValue();
     }
 }

@@ -19,52 +19,53 @@ public class FileRead {
 
         BufferedReader br = null;
         String line;
-
+        
         try {
-            for (int j = 0; j < csvFileList.size(); j++) {
-                br = new BufferedReader(new InputStreamReader(new FileInputStream(csvFileList.get(j))));
+            for (int i = 0; i < csvFileList.size(); i++) {
+                br = new BufferedReader(new InputStreamReader(new FileInputStream(csvFileList.get(i))));
                 while ((line = br.readLine()) != null) {
                     if (line.indexOf("식별번호") < 0) {
                         String[] field = line.split(",");
-                        String fileName = csvFileList.get(j).substring(csvFileList.get(j).lastIndexOf(File.separator)+1, csvFileList.get(j).lastIndexOf("."));
+                        String fileName = csvFileList.get(i).substring(csvFileList.get(i).lastIndexOf(File.separator)+1, csvFileList.get(i).lastIndexOf("."));
+                        
                         if (fileName.equals("customer")) {
                             Customer customer = new Customer();
-                            for (int i = 0; i < field.length; i++) {
-                                if (i == 0) {
+                            for (int j = 0; j < field.length; j++) {
+                                if (j == 0) {
                                     /*
                                      * try { customer.setCustomerNumber(Integer.parseInt(field[i])); } catch
                                      * (Exception e) { System.err.println("숫자가 아닙니다."); }
                                      */
-                                    customer.setCustomerNumber(Integer.parseInt(field[i]));
-                                } else if (i == 1) {
-                                    customer.setCustomerName(field[i]);
+                                    customer.setCustomerNumber(Integer.parseInt(field[j]));
+                                } else if (j == 1) {
+                                    customer.setCustomerName(field[j]);
                                     customerList.add(customer);
                                 }
                             }
                         } else if (fileName.equals("product")) {
                             Product product = new Product();
-                            for (int i = 0; i < field.length; i++) {
-                                if (i == 0) {
-                                    product.setProductNumber(Integer.parseInt(field[i]));
-                                } else if (i == 1) {
-                                    product.setProductName(field[i]);
+                            for (int j = 0; j < field.length; j++) {
+                                if (j == 0) {
+                                    product.setProductNumber(Integer.parseInt(field[j]));
+                                } else if (j == 1) {
+                                    product.setProductName(field[j]);
                                     productList.add(product);
                                 }
                             }
                         } else if (fileName.equals("order")) {
                             Order order = new Order();
-                            for (int i = 0; i < field.length; i++) {
-                                if (i == 0) {
-                                    order.setOrderNumber(Integer.parseInt(field[i]));
-                                } else if (i == 1) {
+                            for (int j = 0; j < field.length; j++) {
+                                if (j == 0) {
+                                    order.setOrderNumber(Integer.parseInt(field[j]));
+                                } else if (j == 1) {
                                     for (Customer customer : customerList) {
-                                        if (customer.getCustomerNumber() == Integer.parseInt(field[i])) {
+                                        if (customer.getCustomerNumber() == Integer.parseInt(field[j])) {
                                             order.setCustomerNumber(customer);
                                         }
                                     }
-                                } else if (i == 2) {
+                                } else if (j == 2) {
                                     for (Product product : productList) {
-                                        if (product.getProductNumber() == Integer.parseInt(field[i])) {
+                                        if (product.getProductNumber() == Integer.parseInt(field[j])) {
                                             order.setProductNumber(product);
                                             orderList.add(order);
                                         }
