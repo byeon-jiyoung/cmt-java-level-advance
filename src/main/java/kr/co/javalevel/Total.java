@@ -23,10 +23,13 @@ public class Total {
             }
         }
         
-        Map<Object, Object> fileMap = FileRead.readFile(csvFileList);
-        Map<Object, Object> xmlFileMap = XmlFileRead.getXmlData(xmlFileList);
+        FileRead fileRead = new FileRead();
+        XmlFileRead xmlFileRead = new XmlFileRead();
+        Map<Object, Object> fileMap = fileRead.readFile(csvFileList);
+        Map<Object, Object> xmlFileMap = xmlFileRead.getXmlData(xmlFileList);
         printMap(fileMap);
         printMap(xmlFileMap);
+        
     }
 
     private static void printMap(Map<Object, Object> map) {

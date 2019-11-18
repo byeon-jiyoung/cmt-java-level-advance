@@ -11,7 +11,17 @@ import java.util.List;
 import java.util.Map;
 
 public class FileRead {
-    public static Map<Object, Object> readFile(List<String> csvFileList) { //객체생성없이 사용하기 위해 static사용
+    private File file;
+    
+    public File getFile() {
+        return file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
+    }
+
+    public Map<Object, Object> readFile(List<String> csvFileList) { //객체생성없이 사용하기 위해 static사용
         Map<Object, Object> map = new HashMap<Object, Object>();
         List<Customer> customerList = new ArrayList<Customer>();
         List<Product> productList = new ArrayList<Product>();
@@ -20,6 +30,7 @@ public class FileRead {
         BufferedReader br = null;
         String line;
         
+
         try {
             for (int i = 0; i < csvFileList.size(); i++) {
                 br = new BufferedReader(new InputStreamReader(new FileInputStream(csvFileList.get(i))));

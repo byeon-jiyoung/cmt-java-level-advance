@@ -13,17 +13,27 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class XmlFileRead {
-    public static Map<Object, Object> getXmlData(List<String> csvFileList) {
+    private File file;
+    
+    public File getFile() {
+        return file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
+    }
+
+    public Map<Object, Object> getXmlData(List<String> xmlFileList) {
         Map<Object, Object> map = new HashMap<Object, Object>();
         List<Customer> customerList = new ArrayList<Customer>();
         List<Product> productList = new ArrayList<Product>();
         List<Order> orderList = new ArrayList<Order>();
         
         try {
-            for (int i = 0; i < csvFileList.size(); i++) {
+            for (int i = 0; i < xmlFileList.size(); i++) {
                 DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance(); // 1.문서를 읽기위한 공장을 만들어야 한다.
                 DocumentBuilder dBuilder = dbFactory.newDocumentBuilder(); // 2.빌더 생성
-                Document doc = dBuilder.parse(new File(csvFileList.get(i))); // 3.생성된 빌더를 통해서 xml문서를 Document객체로 파싱해서 가져온다
+                Document doc = dBuilder.parse(new File(xmlFileList.get(i))); // 3.생성된 빌더를 통해서 xml문서를 Document객체로 파싱해서 가져온다
                 doc.getDocumentElement().normalize();// 문서 구조 안정화
                 Element root = doc.getDocumentElement();
 
